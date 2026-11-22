@@ -1,0 +1,11 @@
+A interface foi desenvolvida em HTML, CSS e JavaScript, e roda no navegador.
+Como o navegador não se conecta diretamente ao MySQL, foi criado um programa intermediário em Node.js
+com Express e o conector mysql2,organizado em camadas: 
+o arquivo connection.js abre um pool de conexões com o banco grao_da_serra, usando usuário, senha e endereço guardados no arquivo .env, que só o servidor lê;
+a pasta models contém apenas os comandos SQL;
+a pasta controllers recebe as requisições, chama o model e devolve o resultado em JSON;
+e a pasta routes liga cada endereço da API ao seu controller.
+No navegador, o módulo dados.js concentra o acesso a dados: cada função faz uma requisição fetch à API.
+Para consultar uma view, listarCardapio() chama GET /api/cardapio, e o model executa SELECT * FROM vw_cardapio.
+Para executar uma procedure, adicionarItem() chama POST /api/pedidos/:id/itens, e o model executa CALL sp_adicionar_item(?, ?, ?).
+Quando uma procedure ou trigger recusa a operação com SIGNAL, a mensagem em português é devolvida pela API e exibida na tela.
