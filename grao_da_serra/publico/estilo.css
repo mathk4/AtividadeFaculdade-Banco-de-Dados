@@ -1,0 +1,268 @@
+/* ---------- 1. CORES (para mudar o visual, altere só aqui) ---------- */
+:root {
+  --verde-escuro: #1f3a2f;   /* cabeçalho e botões principais */
+  --verde-medio:  #2f5545;   /* detalhe dos cartões */
+  --mel:          #d99a2b;   /* destaque */
+  --fundo:        #f2f4ef;   /* fundo da página */
+  --branco:       #ffffff;
+  --texto:        #22302a;
+  --borda:        #d5dbd2;
+  --vermelho:     #a3262f;   /* erros */
+  --verde-ok:     #2e6b3f;   /* sucesso */
+  --cinza:        #5d6b63;
+}
+
+
+/* ---------- 2. BASE DA PÁGINA ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.2rem;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+h2 {
+  margin: 1.6rem 0 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--mel);
+  font-size: 1.5rem;
+}
+
+h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+
+/* ---------- 3. CABEÇALHO E MENU ---------- */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--verde-escuro);
+  color: var(--branco);
+}
+
+header h1 {
+  font-size: 1.6rem;
+}
+
+nav {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+nav button {
+  padding: 0.7rem 1rem;
+  background: transparent;
+  color: #dfe9e2;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  font-size: 1.05rem;
+}
+
+nav button.ativo {
+  color: var(--branco);
+  border-bottom-color: var(--mel);
+}
+
+
+/* ---------- 4. FAIXA DE MENSAGENS (erros e avisos) ---------- */
+#mensagem {
+  position: sticky;      /* fica sempre visível no topo */
+  top: 0;
+  z-index: 5;
+  padding: 0.8rem 1.2rem;
+  font-weight: 600;
+}
+
+#mensagem.erro {
+  background: var(--vermelho);
+  color: var(--branco);
+}
+
+#mensagem.ok {
+  background: var(--verde-ok);
+  color: var(--branco);
+}
+
+
+/* ---------- 5. FORMULÁRIOS E BOTÕES ---------- */
+.linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin: 0.6rem 0;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+
+select,
+input {
+  min-width: 11rem;
+  padding: 0.6rem;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  font: inherit;
+}
+
+button {
+  padding: 0.65rem 1.1rem;
+  background: var(--branco);
+  color: var(--verde-escuro);
+  border: 1px solid var(--verde-escuro);
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.principal {
+  background: var(--verde-escuro);
+  color: var(--branco);
+}
+
+button.grande {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--mel);
+  color: var(--verde-escuro);
+  border-color: var(--mel);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+:focus-visible {
+  outline: 3px solid var(--mel);
+  outline-offset: 2px;
+}
+
+
+/* ---------- 6. TELA CARDÁPIO ---------- */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.8rem;
+}
+
+.cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.8rem;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-left: 5px solid var(--verde-medio);
+}
+
+.cartao.esgotado {
+  opacity: 0.45;
+  border-left-color: var(--vermelho);
+}
+
+.cartao .preco {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.cod {
+  color: var(--cinza);
+  font-size: 0.8rem;
+}
+
+.tag {
+  align-self: flex-start;
+  padding: 0.1rem 0.5rem;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-style: normal;
+}
+
+.tag.amarelo  { background: #f7e2b0; }
+.tag.vermelho { background: #f0c7ca; }
+
+
+/* ---------- 7. TELA NOVO PEDIDO ---------- */
+.itens {
+  padding: 0;
+  list-style: none;
+}
+
+.itens li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+}
+
+.resultado {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #e3efe6;
+  border-left: 5px solid var(--verde-ok);
+  font-size: 1.15rem;
+}
+
+
+/* ---------- 8. TABELAS (Pedidos e Gerência) ---------- */
+.rolagem {
+  overflow-x: auto;     /* tabela larga rola de lado em vez de estourar a tela */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--branco);
+}
+
+th,
+td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--borda);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background: #e6ebe3;
+}
+
+
+/* ---------- 9. CELULAR (telas estreitas) ---------- */
+@media (max-width: 600px) {
+  nav {
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+  }
+}

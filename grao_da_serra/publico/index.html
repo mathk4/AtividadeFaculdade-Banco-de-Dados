@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grão da Serra — Pedidos</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <header>
+    <h1>Grão da Serra</h1>
+    <nav id="menu">
+      <button data-tela="cardapio" class="ativo">Cardápio</button>
+      <button data-tela="novo">Novo pedido</button>
+      <button data-tela="pedidos">Pedidos</button>
+      <button data-tela="gerencia">Gerência</button>
+    </nav>
+  </header>
+
+  <!-- Área fixa e visível para mensagens de erro (SIGNAL do banco) e de sucesso -->
+  <div id="mensagem" role="alert" hidden></div>
+
+  <main>
+    <!-- 1. CARDÁPIO -->
+    <section id="cardapio" class="tela"></section>
+
+    <!-- 2. NOVO PEDIDO -->
+    <section id="novo" class="tela" hidden>
+      <h2>Novo pedido</h2>
+      <div class="linha">
+        <label>Cliente <input id="selCliente" list="listaClientes" placeholder="Digite o nome para buscar" autocomplete="off"></label><datalist id="listaClientes"></datalist>
+        <label>Atendente <input id="selFunc" list="listaFuncs" placeholder="Digite o nome para buscar" autocomplete="off"></label><datalist id="listaFuncs"></datalist>
+        <button id="btnAbrir" class="principal">Abrir pedido</button>
+      </div>
+      <div id="painelPedido" hidden>
+        <h3>Pedido nº <span id="numPedido"></span></h3>
+        <div class="linha">
+          <label>Produto <select id="selProduto"></select></label>
+          <label>Quantidade <input id="qtd" type="number" min="1" value="1"></label>
+          <button id="btnAdicionar">Adicionar item</button>
+        </div>
+        <ul id="listaItens" class="itens"></ul>
+        <button id="btnFinalizar" class="principal grande">Finalizar pedido</button>
+      </div>
+      <div id="resultado" class="resultado" hidden></div>
+    </section>
+
+    <!-- 3. PEDIDOS -->
+    <section id="pedidos" class="tela" hidden>
+      <h2>Pedidos</h2>
+      <label>Status
+        <select id="filtroStatus">
+          <option value="">Todos</option><option>ABERTO</option><option>PAGO</option><option>CANCELADO</option>
+        </select>
+      </label>
+      <div id="tabPedidos" class="rolagem"></div>
+    </section>
+
+    <!-- 4. GERÊNCIA -->
+    <section id="gerencia" class="tela" hidden>
+      <h2>Produtos para repor</h2>
+      <div id="tabRepor" class="rolagem"></div>
+      <h2>Vendas por categoria</h2>
+      <div id="tabVendas" class="rolagem"></div>
+      <h2>Reajuste de preços</h2>
+      <div class="linha">
+        <label>Categoria <select id="selCategoria"></select></label>
+        <label>Percentual (%) <input id="percentual" type="number" step="0.01" value="10"></label>
+        <button id="btnReajustar" class="principal">Aplicar reajuste</button>
+      </div>
+      <h2>Histórico de preços</h2>
+      <div id="tabHistorico" class="rolagem"></div>
+    </section>
+  </main>
+
+  <!-- Ordem importa: primeiro o módulo de dados, depois a lógica das telas -->
+  <script src="dados.js"></script>
+  <script src="telas.js"></script>
+</body>
+</html>
